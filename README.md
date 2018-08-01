@@ -18,3 +18,4 @@ National Park App to share experiences and inspire fellow travelers!
 
 ## ERD
 ![screenshot_20180801-093618](https://media.git.generalassemb.ly/user/14894/files/b1528d30-956e-11e8-852e-6ae1e6b3c149)
+
