@@ -23,15 +23,10 @@ CREATE TABLE parks (
 
 CREATE TABLE comments (
     id SERIAL PRIMARY KEY,
+    author VARCHAR(255) REFERENCES users(username) ON DELETE CASCADE,
     content TEXT,
     date_created TIMESTAMP NOT NULL DEFAULT NOW(),
     park_id INTEGER REFERENCES parks(id) ON DELETE CASCADE
-);
-
-CREATE TABLE user_comments (
-    id SERIAL PRIMARY KEY,
-    user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-    comment_id INTEGER REFERENCES comments(id) ON DELETE CASCADE
 );
 
 CREATE TABLE user_parks (
