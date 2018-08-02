@@ -26,29 +26,30 @@ module.exports = {
                 })
         })
     }, 
-    findAll() {
-        return db.many(`
+    findByUsername(username) {
+        return db.one(`
         SELECT *
-        FROM parks
-        `); 
+        FROM users
+        WHERE id = $1
+        `, username); 
     },
     findById(id) {
         return db.one(`
         SELECT *
-        FROM parks
+        FROM users
         WHERE id = $1`, id);
     },
-    save(park) {
-        return db.one(`
-        INSERT INTO parks
-        (name, location)
-        VALUES
-        ($/name/, $/location/)
-        RETURNING *`, park);
-    },
-    destroy(id) {
-        return db.none(`
-        DELETE FROM parks
-        WHERE id = $1`, id);
-    },
+    async login(username, password) {
+        try {
+            const user = await this.findByUsername(username);
+            const res = await bcrypt.compare(password, user.password_digest);
+            if (!res) {
+                throw new Error('password not accepted');
+            }
+            delete user.password_digest;
+            return user;
+        } catch (err) {
+            throw new Error('Unauthorized');
+        }
+    }
 };
