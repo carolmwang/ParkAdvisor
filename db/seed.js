@@ -1,13 +1,13 @@
-// -- INSERT INTO parks (name, location)
-// -- VALUES 
-// -- ('Acadia National Park', 'Maine'),
-// -- ('Arches National Park', 'Utah'),
-// -- ('Badlands National Park', 'South Dakota'),
-// -- ('Big Bend National Park', 'Texas'),
-// -- ('Biscayne National Park', 'Florida');
-
 const park = require('../models/parks');
+const user = require('../models/user');
 
+const userSeedData = [
+    { first_name: 'Carol', 
+      last_name: 'Wang', 
+      email: 'carolmwang@gmail.com', 
+      username: 'cwang', 
+      password: 'pass'}
+]
 const parkSeedData = [
     {
         name: 'Acadia National Park',
@@ -30,11 +30,13 @@ const parkSeedData = [
         location: 'Florida',
     },
 ];
-
+// 
 async function seed() {
     const parks = await Promise.all((parkSeedData.map(park.save)));
-    debugger;
-    console.log(parks);
+    const users = await Promise.all((userSeedData.map(
+        ({ first_name, last_name, email, username, password }) => 
+        user.register(first_name, last_name, email, username, password))));
+    console.log(users);
 };
 
 seed();

@@ -7,6 +7,7 @@ const db = require('../config/connection');
 // find by id
 // save
 // destroy
+// Do I need to insert all columns in the register function?
 module.exports = {
     register(first_name, last_name, email, username, password) {
         return bcrypt.hash(password, 8)
