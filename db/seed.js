@@ -36,7 +36,6 @@ async function seed() {
     const users = await Promise.all((userSeedData.map(
         ({ first_name, last_name, email, username, password }) => 
         user.register(first_name, last_name, email, username, password))));
-    console.log(users);
 };
 
 seed();
