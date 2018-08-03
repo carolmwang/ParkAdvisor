@@ -32,3 +32,10 @@ module.exports = {
     WHERE id = $1`, id);
   },
 };
+function findAll() {
+  return db.many(`
+  SELECT *
+  FROM parks
+  `);
+}
+console.log(findAll());

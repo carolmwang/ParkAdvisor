@@ -1,3 +1,4 @@
+require('dotenv').config();
 const parkApi = process.env.PARK_API_KEY;
 const fetch = require('node-fetch');
 

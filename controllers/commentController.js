@@ -1,4 +1,4 @@
-const commentDB = require('../models/comments');
+const commentDB = require('../models/commentDB');
 // create new comment middleware function
 // get all middleware function
 // get one middleware function
