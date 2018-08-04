@@ -6,12 +6,12 @@ module.exports = {
     res.sendStatus(400);
   },
   showParks(req, res) {
-    res.render('parks', {
-      park: res.locals.parks,
+    res.render('allParks', {
+      parks: res.locals.parks,
     });
   },
   showOne(req, res) {
-    res.render('parks', {
+    res.render('onePark', {
       park: res.locals.park,
     });
   },

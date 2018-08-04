@@ -6,7 +6,6 @@ module.exports = {
       .then((parks) => {
         res.locals.parks = parks;
         next();
-        // return parks;
       })
       .catch(err => next(err));
   },
@@ -15,7 +14,6 @@ module.exports = {
       .then((park) => {
         res.locals.park = park;
         next();
-        // return park;
       })
       .catch(err => next(err));
   },

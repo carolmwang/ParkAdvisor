@@ -11,9 +11,9 @@ const commentDB = require('../models/commentDB');
 module.exports = {
   createNewComment(req, res, next) {
     // COME BACK TO THIS AND FIX THE REQ
-    commentDB.save({ ...req.body })
+    commentDB.save({ ...req.body, author: req.user.id })
       .then((comment) => {
-        res.redirect('./comments');
+        res.redirect('./:id');
       })
       .catch(err => next(err));
   },
@@ -40,14 +40,14 @@ module.exports = {
   },
   update(req, res, next) {
     const { author, content, park_id } = req.body;
-    const modifiedQuote = {
+    const modifiedComment = {
       id: req.pararms.id,
       author,
       content,
       park_id,
     };
 
-    commentDB.update(modifiedQuote)
+    commentDB.update(modifiedComment)
       .then((comment) => {
         res.locals.comment = comment;
         next();

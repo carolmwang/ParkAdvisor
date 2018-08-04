@@ -21,9 +21,9 @@ module.exports = {
   save(park) {
     return db.one(`
     INSERT INTO parks
-    (name, location)
+    (name, state_id)
     VALUES
-    ($/name/, $/location/)
+    ($/name/, $/state_id/)
     RETURNING *`, park);
   },
   destroy(id) {

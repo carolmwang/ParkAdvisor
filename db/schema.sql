@@ -2,22 +2,28 @@ DROP TABLE IF EXISTS user_parks;
 DROP TABLE IF EXISTS comments;
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS parks;
+DROP TABLE IF EXISTS states;
 
 
 CREATE TABLE users (
     id SERIAL PRIMARY KEY,
     first_name VARCHAR(255),
     last_name VARCHAR(255),
-    email VARCHAR(255) NOT NULL UNIQUE,
+    email TEXT NOT NULL UNIQUE,
     username VARCHAR(255) NOT NULL UNIQUE,
     password_digest VARCHAR(255) NOT NULL,
     date_created TIMESTAMP NOT NULL DEFAULT NOW()
 );
 
+CREATE TABLE states (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255)
+);
+
 CREATE TABLE parks (
     id SERIAL PRIMARY KEY,
     name VARCHAR(255),
-    location VARCHAR(255)
+    state_id INTEGER REFERENCES states(id) ON DELETE CASCADE
 );
 
 CREATE TABLE comments (

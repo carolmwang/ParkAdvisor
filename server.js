@@ -5,11 +5,14 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const api = require('./api/api');
 
-const parkRouter = require('./routes/parks');
+const parkRouter = require('./routes/parkRoute');
 
 const PORT = process.env.PORT || 3000;
 
 const app = express();
+
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
 
 // set up logger
 app.use(logger('dev'));
