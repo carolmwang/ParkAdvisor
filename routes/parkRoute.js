@@ -3,6 +3,7 @@ const parkController = require('../controllers/parkController');
 const parkView = require('../controllers/view/parkViewController');
 const commentController = require('../controllers/commentController');
 const commentViewController = require('../controllers/view/commentViewController');
+const userController = require('../controllers/userController');
 
 const parkRouter = express.Router();
 
@@ -16,13 +17,13 @@ parkRouter.post('/:id/new', (req, res) => {
 });
 
 parkRouter.route('/:id')
-  .get(parkController.getOne, parkView.showOne, parkView.show404)
+  .get(parkController.getOne, parkView.showOne, userController.userInfo, parkView.show404)
   .put()
   .delete()
   .post(commentController.createNewComment);
 
 parkRouter.route('/')
-  .post()
+  .post(parkController.index, parkView.show404)
   .get(parkController.index, parkView.showParks, parkView.show404);
 
 

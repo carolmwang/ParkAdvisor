@@ -3,6 +3,7 @@ const express = require('express');
 const logger = require('morgan');
 const path = require('path');
 const bodyParser = require('body-parser');
+const methodOverride = require('method-override');
 const api = require('./api/api');
 
 const parkRouter = require('./routes/parkRoute');
@@ -20,6 +21,7 @@ app.use(logger('dev'));
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(methodOverride('_method'));
 
 app.use('/parks', parkRouter);
 

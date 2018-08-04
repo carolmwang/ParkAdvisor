@@ -1,7 +1,7 @@
 // require passport
 const passport = require('passport');
 
-const userDB = require('./models/userDB');
+const userDB = require('../models/userDB');
 
 function renderLogin(req, res) {
   res.render('auth/login', { errors: req.flash('error') });
@@ -10,7 +10,7 @@ function renderLogin(req, res) {
 const handleLogin = passport.authenticate('local', {
   successRedirect: '/',
   failureRedirect: '/auth/login',
-  failureFlash:    'Invalid username and password',
+  failureFlash: 'Invalid username and password',
 });
 
 function renderRegister(req, res) {
@@ -47,6 +47,16 @@ function usersOnly(req, res, next) {
   }
 }
 
+function userInfo(req, res, next) {
+  userDB.findByUsername(username)
+    .then((name) => {
+      res.locals.userData = name;
+      next();
+    })
+    .catch(err => next(err));
+}
+
+
 module.exports = {
   renderLogin,
   handleLogin,
@@ -54,4 +64,5 @@ module.exports = {
   handleRegister,
   handleLogout,
   usersOnly,
+  userInfo,
 };

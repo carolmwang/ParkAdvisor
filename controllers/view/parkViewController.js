@@ -13,6 +13,7 @@ module.exports = {
   showOne(req, res) {
     res.render('onePark', {
       park: res.locals.park,
+      name: req.query.name,
     });
   },
 };
