@@ -14,9 +14,11 @@ module.exports = {
   },
   findById(id) {
     return db.one(`
-    SELECT *
+    SELECT parks.id, parks.name, states.name AS state
     FROM parks
-    WHERE id = $1`, id);
+    JOIN states
+    ON states.id = parks.state_id
+    WHERE parks.id = $1`, id);
   },
   save(park) {
     return db.one(`

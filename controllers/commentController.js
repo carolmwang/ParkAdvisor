@@ -13,7 +13,7 @@ module.exports = {
     // COME BACK TO THIS AND FIX THE REQ
     commentDB.save({ ...req.body, author: req.user.id })
       .then((comment) => {
-        res.redirect('./:id');
+        res.redirect(`/${req.params.park_id}`);
       })
       .catch(err => next(err));
   },

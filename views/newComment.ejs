@@ -1,6 +1,10 @@
-<form action="/parks/:id" method="post">
+<form action="/parks/<%= park.id %>" method="post">
+
   <label for="content">
-    <textarea name="content" col="30" rows="5">
+    Share your experience 
+    <textarea name="content" col="30" rows="5" id="content">
     </textarea>
+    <input type="submit" value="submit">
   </label>
+  
 </form>
