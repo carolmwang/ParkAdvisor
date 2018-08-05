@@ -13,6 +13,37 @@ const userSeedData = [
   },
 ];
 
+const parkSeedData = [
+  {
+    name: 'Acadia National Park',
+    state_id: '1',
+  },
+  {
+    name: 'Arches National Park',
+    state_id: '1',
+  },
+  {
+    name: 'Badlands National Park',
+    state_id: '1',
+  },
+  {
+    name: 'Big Bend National Park',
+    state_id: '1',
+  },
+  {
+    name: 'Biscayne National Park',
+    state_id: '1',
+  },
+];
+
+const commentSeedData = [
+  {
+    author: 'cwang',
+    content: 'This is the best park!',
+    park_id: '1',
+  },
+];
+
 const stateSeedData = [
   {
     name: 'Alabama',
@@ -166,39 +197,9 @@ const stateSeedData = [
   },
 ];
 
-const parkSeedData = [
-  {
-    name: 'Acadia National Park',
-    state_id: '1',
-  },
-  {
-    name: 'Arches National Park',
-    state_id: '1',
-  },
-  {
-    name: 'Badlands National Park',
-    state_id: '1',
-  },
-  {
-    name: 'Big Bend National Park',
-    state_id: '1',
-  },
-  {
-    name: 'Biscayne National Park',
-    state_id: '1',
-  },
-];
-
-const commentSeedData = [
-  {
-    author: 'cwang',
-    content: 'This is the best park!',
-    park_id: '1',
-  },
-];
-
 async function seed() {
-  const states = await Promise.all((stateSeedData.map(state.save)));
+  const stateQueries = await Promise.all((stateSeedData.map(state.save)));
+  const states = await Promise.all(stateQueries);
   console.log(states);
   const parks = await Promise.all((parkSeedData.map(park.save)));
   console.log(parks);
