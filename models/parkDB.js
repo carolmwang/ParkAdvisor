@@ -8,8 +8,10 @@ const db = require('../config/connection');
 module.exports = {
   findAll() {
     return db.many(`
-    SELECT *
+    SELECT parks.id, parks.name, parks.state_id, states.name AS state
     FROM parks
+    JOIN states
+    ON states.id = parks.state_id
     `);
   },
   findById(id) {

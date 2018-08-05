@@ -9,6 +9,7 @@ const session        = require('express-session');
 const flash          = require('connect-flash');
 const api            = require('./api/api');
 
+const stateRouter = require('./routes/stateRoute');
 const parkRouter = require('./routes/parkRoute');
 const authRouter = require('./routes/auth');
 const authController = require('./controllers/userController');
@@ -42,6 +43,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // set up routers
+app.use('/states', stateRouter);
 app.use('/parks', parkRouter);
 app.use('/auth', authRouter);
 

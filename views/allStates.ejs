@@ -1,0 +1,15 @@
+<%- include('./partials/header') %>
+
+<form action="/states" method="POST">
+  <label for="name">
+  Choose a state!
+  <select type="custom-selects" style="width:200px" name="name">
+    <% states.forEach((state) => { %>
+      <option value="<%= state.id %>"><%= state.name %></option>
+    <% }) %>
+  </select>
+  </label>
+  <button type="submit">submit</button>
+</form>
+
+<%- include('./partials/foot') %>

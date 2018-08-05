@@ -1,6 +1,6 @@
 <%- include('./partials/header') %>
 
-<h3>The Great National Parks of America:</h3>
+<h3>National Parks in <%= parks.state %>:</h3>
 <% parks.forEach((parks) => { %>
 <div>
   <p><%= parks.name %> in <%= parks.location %></p>
