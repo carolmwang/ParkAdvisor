@@ -1,9 +1,11 @@
 <%- include('./partials/header') %>
 
-<h3>National Parks in <%= parks.state %>:</h3>
+<h3>National Parks in <%= parks[0].state %>:</h3>
 <% parks.forEach((parks) => { %>
 <div>
-  <p><%= parks.name %> in <%= parks.location %></p>
+  <a href="/parks/<%= parks.id %>">
+    <p><%= parks.name %></p>
+  </a>
   <form action= "/parks" method="POST">
     <label for="review"></label>
     <textarea cols="30" rows= "5" placeholder="Share your experience with <%= parks.name %>" name = "comment_text"></textarea>

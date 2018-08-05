@@ -13,6 +13,7 @@ module.exports = {
     parkDB.findByState(req.query.id)
       .then((parks) => {
         res.locals.parks = parks;
+        console.log(parks);
         next();
       })
       .catch(err => next(err));

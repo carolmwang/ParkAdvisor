@@ -3,10 +3,8 @@
 <h3><%= park.name %></h3>
 <div>
   <p><%= park.state %></p>
-  <%- include('./newComment', {
-    park_id: 
-  })%>
-  </div>
+  <%- include('./partials/newComment')%>
 </div>
+
 
 <%- include('./partials/foot') %>
