@@ -9,12 +9,12 @@ module.exports = {
       })
       .catch(err => next(err));
   },
-  getOne(req, res, next) {
-    stateDB.findById(req.params.id)
-      .then((state) => {
-        res.locals.state = state;
-        next();
-      })
-      .catch(err => next(err));
-  },
+  // getOne(req, res, next) {
+  //   stateDB.findById(req.params.id)
+  //     .then((state) => {
+  //       res.locals.state = state;
+  //       next();
+  //     })
+  //     .catch(err => next(err));
+  // },
 };

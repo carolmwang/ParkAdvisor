@@ -4,9 +4,4 @@ module.exports = {
       states: res.locals.states,
     });
   },
-  showOneState(req, res) {
-    res.render('oneState', {
-      state: res.locals.state,
-    });
-  },
 };

@@ -1,15 +1,17 @@
 <%- include('./partials/header') %>
 
-<form action="/states" method="POST">
+<form action="/parks" method="GET">
   <label for="name">
   Choose a state!
-  <select type="custom-selects" style="width:200px" name="name">
+  <select type="custom-selects" style="width:200px" name="id">
     <% states.forEach((state) => { %>
-      <option value="<%= state.id %>"><%= state.name %></option>
+      <label for="<%= state.id %>">
+      <option id="<%= state.id %>" value="<%= state.id %>" name="<%= state.id %>"><%= state.name %></option>
+      </label>
     <% }) %>
   </select>
+  <input type="submit" value="submit">
   </label>
-  <button type="submit">submit</button>
 </form>
 
 <%- include('./partials/foot') %>

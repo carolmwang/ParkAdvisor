@@ -26,7 +26,7 @@ parkRouter.route('/:id')
 
 parkRouter.route('/')
   .post(parkController.index, parkView.show404)
-  .get(parkController.index, parkView.showParks, parkView.show404);
+  .get(parkController.getInState, parkView.showParks, parkView.show404);
 
 
 module.exports = parkRouter;

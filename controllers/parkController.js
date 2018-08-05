@@ -9,6 +9,14 @@ module.exports = {
       })
       .catch(err => next(err));
   },
+  getInState(req, res, next) {
+    parkDB.findByState(req.query.id)
+      .then((parks) => {
+        res.locals.parks = parks;
+        next();
+      })
+      .catch(err => next(err));
+  },
   getOne(req, res, next) {
     parkDB.findById(req.params.id)
       .then((park) => {

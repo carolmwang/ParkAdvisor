@@ -22,6 +22,14 @@ module.exports = {
     ON states.id = parks.state_id
     WHERE parks.id = $1`, id);
   },
+  findByState(id) {
+    return db.many(`
+    SELECT parks.id, parks.name, parks.state_id, states.name AS state
+    FROM parks
+    JOIN states
+    ON states.id = parks.state_id
+    WHERE parks.state_id = $1`, id);
+  },
   save(park) {
     return db.one(`
     INSERT INTO parks
