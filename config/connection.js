@@ -1,4 +1,8 @@
-const pgp = require('pg-promise')();
+const pgp = require('pg-promise')({
+  query(q) {
+    console.log(q.query);
+  },
+});
 const dbConfig = require('./dbConfig');
 
 const db = pgp(dbConfig);

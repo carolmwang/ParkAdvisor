@@ -4,8 +4,10 @@ const parkView = require('../controllers/view/parkViewController');
 const commentController = require('../controllers/commentController');
 const commentViewController = require('../controllers/view/commentViewController');
 const userController = require('../controllers/userController');
-
+const authController = require('../controllers/userController');
 const parkRouter = express.Router();
+
+parkRouter.use(authController.usersOnly);
 
 // const showJSON = (req, res) => {
 //   res.json(res.locals.park);

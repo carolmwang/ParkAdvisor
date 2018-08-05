@@ -8,7 +8,7 @@ function renderLogin(req, res) {
 }
 
 const handleLogin = passport.authenticate('local', {
-  successRedirect: '/',
+  successRedirect: '/parks/',
   failureRedirect: '/auth/login',
   failureFlash: 'Invalid username and password',
 });
@@ -18,16 +18,12 @@ function renderRegister(req, res) {
 }
 
 function handleRegister(req, res, next) {
-  // Get supplied credentials from request body
-  const { username, password } = req.body;
-  // register the new user
-  userDB.register(username, password)
+  const { first_name, last_name, email, username, password } = req.body;
+  userDB.register(first_name, last_name, email, username, password)
     .then((newUser) => {
-      // if the user was created, log them in
       req.login(newUser, err => (err ? next(err) : res.redirect('/')));
     })
     .catch((err) => {
-      // if there was an error, we assume (yikes) it's the unique username constraint
       req.flash('error', 'username unavailable');
       res.redirect('/auth/register');
     });
