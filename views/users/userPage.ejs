@@ -18,6 +18,9 @@
                 </div>
             </label>
           </form>
+          <form action='/user/<%= comment.comment_id %>?_method=DELETE' method="POST">
+          <input type="submit" value = "Delete review">
+          </form>
         </p>
       </div>
     <% }) %>

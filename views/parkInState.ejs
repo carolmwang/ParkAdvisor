@@ -3,7 +3,7 @@
 <h3>National Parks in <%= parks.state %>:</h3>
 <% parks.forEach((parks) => { %>
 <div>
-  <a href="/parks/<%= parks.id %>"><p><%= parks.name %> in <%= parks.location %></p></a>
+  <a href="/parks/<%= parks.state %>"><p><%= parks.name %> in <%= parks.state %></p></a>
   <form action= "/parks" method="POST">
     <label for="review"></label>
     <textarea cols="30" rows= "5" placeholder="Share your experience with <%= parks.name %>" name = "comment_text"></textarea>

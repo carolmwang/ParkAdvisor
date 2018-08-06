@@ -41,7 +41,8 @@ function findById(id) {
 
 function findAllComments(id) {
   return db.many(`
-  SELECT users.first_name, users.username, comments.id AS comment_id, comments.content, comments.date_created, parks.name AS park
+  SELECT users.first_name, users.username, comments.id AS comment_id, 
+  comments.content, comments.date_created, comments.park_id, parks.name AS park
   FROM users
   JOIN comments
   ON comments.author = users.username

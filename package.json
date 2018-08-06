@@ -24,6 +24,7 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
+    "bulma": "^0.7.1",
     "connect-flash": "^0.1.1",
     "dotenv": "^6.0.0",
     "ejs": "^2.6.1",

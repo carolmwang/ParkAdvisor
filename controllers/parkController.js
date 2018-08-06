@@ -10,7 +10,7 @@ module.exports = {
       .catch(err => next(err));
   },
   getInState(req, res, next) {
-    parkDB.findByState(req.query.id)
+    parkDB.findByState(req.query.code)
       .then((parks) => {
         res.locals.parks = parks;
         console.log(parks);

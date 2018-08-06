@@ -7,7 +7,6 @@ const methodOverride = require('method-override');
 const passport       = require('passport');
 const session        = require('express-session');
 const flash          = require('connect-flash');
-const api            = require('./api/api');
 
 const stateRouter = require('./routes/stateRoute');
 const parkRouter = require('./routes/parkRoute');

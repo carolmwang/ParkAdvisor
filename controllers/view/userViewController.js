@@ -8,4 +8,7 @@ module.exports = {
   handleUpdate(req, res) {
     res.redirect('/user');
   },
+  handleDelete(req, res) {
+    res.redirect('/user');
+  },
 };

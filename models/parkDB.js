@@ -8,10 +8,10 @@ const db = require('../config/connection');
 module.exports = {
   findAll() {
     return db.many(`
-    SELECT parks.id, parks.name, parks.state_id, states.name AS state
+    SELECT parks.id, parks.name, parks.state, states.name AS state
     FROM parks
     JOIN states
-    ON states.id = parks.state_id
+    ON states.code = parks.state
     `);
   },
   findById(id) {
@@ -19,16 +19,16 @@ module.exports = {
     SELECT parks.id, parks.name, states.name AS state
     FROM parks
     JOIN states
-    ON states.id = parks.state_id
+    ON states.code = parks.state
     WHERE parks.id = $1`, id);
   },
   findByState(id) {
     return db.many(`
-    SELECT parks.id, parks.name, parks.state_id, states.name AS state
+    SELECT parks.id, parks.name, parks.state, states.name AS state
     FROM parks
     JOIN states
-    ON states.id = parks.state_id
-    WHERE parks.state_id = $1`, id);
+    ON states.code = parks.state
+    WHERE parks.state = $1`, id);
   },
   save(park) {
     return db.one(`
@@ -43,11 +43,12 @@ module.exports = {
     DELETE FROM parks
     WHERE id = $1`, id);
   },
+  insert(apiInfo) {
+    return db.one(`
+    INSERT INTO parks
+    (name, state, description, weather, url, directions)
+    VALUES
+    ($/name/, $/state/, $/description/, $/weather/, $/url/, $/directions/)
+    RETURNING *`, apiInfo);
+  },
 };
-function findAll() {
-  return db.many(`
-  SELECT *
-  FROM parks
-  `);
-}
-console.log(findAll());

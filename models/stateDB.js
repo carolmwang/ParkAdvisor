@@ -15,18 +15,18 @@ module.exports = {
   },
   findParks(id) {
     return db.many(`
-    SELECT parks.id, parks.name, parks.state_id, states.name AS state
+    SELECT parks.id, parks.name, parks.state, states.name AS state
     FROM states
     JOIN parks
-    ON states.id = parks.state_id
+    ON states.code = parks.state
     WHERE parks.state_id = $1`, id);
   },
   save(state) {
     return db.one(`
     INSERT INTO states
-    (name)
+    (name, code)
     VALUES
-    ($/name/)
+    ($/name/, $/code/)
     RETURNING *`, state);
   },
 };

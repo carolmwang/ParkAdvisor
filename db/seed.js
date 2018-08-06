@@ -2,6 +2,7 @@ const park = require('../models/parkDB');
 const user = require('../models/userDB');
 const comment = require('../models/commentDB');
 const state = require('../models/stateDB');
+const api = require('../api/api');
 
 const userSeedData = [
   {
@@ -13,28 +14,28 @@ const userSeedData = [
   },
 ];
 
-const parkSeedData = [
-  {
-    name: 'Acadia National Park',
-    state_id: '1',
-  },
-  {
-    name: 'Arches National Park',
-    state_id: '1',
-  },
-  {
-    name: 'Badlands National Park',
-    state_id: '1',
-  },
-  {
-    name: 'Big Bend National Park',
-    state_id: '1',
-  },
-  {
-    name: 'Biscayne National Park',
-    state_id: '1',
-  },
-];
+// const parkSeedData = [
+//   {
+//     name: 'Acadia National Park',
+//     state_id: '1',
+//   },
+//   {
+//     name: 'Arches National Park',
+//     state_id: '1',
+//   },
+//   {
+//     name: 'Badlands National Park',
+//     state_id: '1',
+//   },
+//   {
+//     name: 'Big Bend National Park',
+//     state_id: '1',
+//   },
+//   {
+//     name: 'Biscayne National Park',
+//     state_id: '1',
+//   },
+// ];
 
 const commentSeedData = [
   {
@@ -47,153 +48,203 @@ const commentSeedData = [
 const stateSeedData = [
   {
     name: 'Alabama',
+    code: 'AL',
   },
   {
     name: 'Alaska',
+    code:  'AK',
   },
   {
     name: 'Arizona',
+    code: 'AZ',
   },
   {
     name: 'Arkansas',
+    code: 'AR',
   },
   {
     name: 'California',
+    code: 'CA',
   },
   {
     name: 'Colorado',
+    code: 'CO',
   },
   {
     name: 'Connecticut',
+    code: 'CT',
   },
   {
     name: 'Delaware',
+    code: 'DE',
   },
   {
     name: 'Florida',
+    code: 'FL',
   },
   {
     name: 'Georgia',
+    code: 'GA',
   },
   {
     name: 'Hawaii',
+    code: 'HI',
   },
   {
     name: 'Idaho',
+    code: 'ID',
   },
   {
     name: 'Illinois',
+    code: 'IL',
   },
   {
     name: 'Indiana',
+    code: 'IN',
   },
   {
     name: 'Iowa',
+    code: 'IA',
   },
   {
     name: 'Kansas',
+    code: 'KA',
   },
   {
     name: 'Kentucky',
+    code: 'KY',
   },
   {
     name: 'Louisiana',
+    code: 'LA',
   },
   {
     name: 'Maine',
+    code: 'ME',
   },
   {
     name: 'Maryland',
+    code: 'MD',
   },
   {
     name: 'Massachusetts',
+    code: 'MA',
   },
   {
     name: 'Michigan',
+    code: 'MI',
   },
   {
     name: 'Minnesota',
+    code: 'MN',
   },
   {
     name: 'Mississippi',
+    code: 'MS',
   },
   {
     name: 'Missouri',
+    code: 'MO',
   },
   {
     name: 'Montana',
+    code: 'MT',
   },
   {
     name: 'Nebraska',
+    code: 'NE',
   },
   {
     name: 'Nevada',
+    code: 'NV',
   },
   {
     name: 'New Hampshire',
+    code: 'NH',
   },
   {
     name: 'New Jersey',
+    code: 'NJ',
   },
   {
     name: 'New Mexico',
+    code: 'NM',
   },
   {
     name: 'New York',
+    code: 'NY',
   },
   {
     name: 'North Carolina',
+    code: 'NC',
   },
   {
     name: 'North Dakota',
+    code: 'ND',
   },
   {
     name: 'Ohio',
+    code: 'OH',
   },
   {
     name: 'Oklahoma',
+    code: 'OK',
   },
   {
     name: 'Oregon',
+    code: 'OR',
   },
   {
     name: 'Pennsylvania',
+    code: 'PA',
   },
   {
     name: 'Rhode Island',
+    code: 'RI',
   },
   {
     name: 'South Carolina',
+    code: 'SC',
   },
   {
     name: 'South Dakota',
+    code: 'SD',
   },
   {
     name: 'Tennessee',
+    code: 'TN',
   },
   {
     name: 'Texas',
+    code: 'TX',
   },
   {
     name: 'Utah',
+    code: 'UT',
   },
   {
     name: 'Vermont',
+    code: 'VT',
   },
   {
     name: 'Virginia',
+    code: 'VA',
   },
   {
     name: 'Washington',
+    code: 'WA',
   },
   {
     name: 'West Virginia',
+    code: 'WV',
   },
   {
     name: 'Wisconsin',
+    code: 'WI',
   },
   {
     name: 'Wyoming',
+    code: 'WY',
   },
 ];
 
@@ -201,8 +252,8 @@ async function seed() {
   const stateQueries = await Promise.all((stateSeedData.map(state.save)));
   const states = await Promise.all(stateQueries);
   console.log(states);
-  const parks = await Promise.all((parkSeedData.map(park.save)));
-  console.log(parks);
+  // const parks = await Promise.all((parkSeedData.map(park.save)));
+  // console.log(parks);
   const users = await Promise.all((userSeedData.map(
     ({
       first_name, last_name, email, username, password,
@@ -211,6 +262,7 @@ async function seed() {
   console.log(users);
   const comments = await Promise.all((commentSeedData.map(comment.save)));
   console.log(comments);
-};
+}
+
 
 seed();

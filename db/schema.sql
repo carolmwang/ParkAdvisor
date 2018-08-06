@@ -17,13 +17,18 @@ CREATE TABLE users (
 
 CREATE TABLE states (
     id SERIAL PRIMARY KEY,
-    name VARCHAR(255)
+    name VARCHAR(255),
+    code VARCHAR(2)
 );
 
 CREATE TABLE parks (
     id SERIAL PRIMARY KEY,
     name VARCHAR(255),
-    state_id INTEGER REFERENCES states(id) ON DELETE CASCADE
+    state VARCHAR(10),
+    description VARCHAR(500),
+    weather VARCHAR(500),
+    url VARCHAR(255),
+    directions VARCHAR(255)
 );
 
 CREATE TABLE comments (

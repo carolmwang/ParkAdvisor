@@ -20,7 +20,7 @@ module.exports = {
     JOIN parks p
     ON p.id = c.park_id
     JOIN states s
-    ON p.state_id = s.id
+    ON p.state = s.code
     WHERE park_id = $1`,
     id);
   },
