@@ -23,6 +23,13 @@ module.exports = {
         next();
       }).catch(err => next(err));
   },
+  getByPark(req, res, next) {
+    commentDB.findCommentsByPark(req.params.id)
+      .then((comments) => {
+        res.locals.comments = comments;
+        next();
+      }).catch(err => next(err));
+  },
   getOne(req, res, next) {
     commentDB.findById(req.params.id)
       .then((comment) => {

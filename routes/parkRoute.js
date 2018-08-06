@@ -20,7 +20,7 @@ parkRouter.post('/:id/new', (req, res) => {
 });
 
 parkRouter.route('/:id')
-  .get(parkControl.getOne, commentControl.index, commentView.showComments, userControl.userInfo, parkView.showOne, parkView.show404)
+  .get(parkControl.getOne, parkView.showOne, commentControl.getByPark, commentView.showComments, userControl.userInfo, parkView.showOne, parkView.show404)
   .put()
   .delete()
   .post(parkControl.getOne, commentControl.createNewComment);

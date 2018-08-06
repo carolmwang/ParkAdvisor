@@ -12,6 +12,7 @@ const api            = require('./api/api');
 const stateRouter = require('./routes/stateRoute');
 const parkRouter = require('./routes/parkRoute');
 const userRouter = require('./routes/userRoute');
+const commentRouter = require('./routes/commentRoute');
 const authRouter = require('./routes/auth');
 const authController = require('./controllers/userController');
 
@@ -48,6 +49,7 @@ app.use('/states', stateRouter);
 app.use('/parks', parkRouter);
 app.use('/user', userRouter);
 app.use('/auth', authRouter);
+app.use('/comments', commentRouter);
 
 app.get('/', (req, res) => {
   console.log(req.user);

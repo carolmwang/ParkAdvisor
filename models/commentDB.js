@@ -12,6 +12,18 @@ module.exports = {
       FROM comments
       `);
   },
+  findCommentsByPark(id) {
+    return db.many(`
+    SELECT c.id, c.author, c.content, c.date_created, 
+    p.id AS park_id, p.name AS park, s.name
+    FROM comments c
+    JOIN parks p
+    ON p.id = c.park_id
+    JOIN states s
+    ON p.state_id = s.id
+    WHERE park_id = $1`,
+    id);
+  },
   findById(id) {
     return db.one(`
       SELECT *

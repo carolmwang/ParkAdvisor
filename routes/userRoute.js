@@ -12,5 +12,5 @@ userRouter.get('/', userControl.userInfo, userView.showUserInfo);
 userRouter.route('/')
   .get(userControl.userInfo, userView.showUserInfo)
   .put(userControl.userInfo, commentControl.update, userView.handleUpdate);
-
+  // .delete()
 module.exports = userRouter;

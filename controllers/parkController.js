@@ -22,6 +22,7 @@ module.exports = {
     parkDB.findById(req.params.id)
       .then((park) => {
         res.locals.park = park;
+        console.log(park);
         next();
       })
       .catch(err => next(err));
