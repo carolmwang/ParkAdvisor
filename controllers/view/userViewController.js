@@ -6,6 +6,6 @@ module.exports = {
     });
   },
   handleUpdate(req, res) {
-    res.redirect('/');
+    res.redirect('/user');
   },
 };

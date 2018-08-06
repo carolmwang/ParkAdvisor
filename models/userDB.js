@@ -41,13 +41,15 @@ function findById(id) {
 
 function findAllComments(id) {
   return db.many(`
-  SELECT users.username, comments.id, comments.content, comments.date_created, parks.name
+  SELECT users.first_name, users.username, comments.id AS comment_id, comments.content, comments.date_created, parks.name AS park
   FROM users
   JOIN comments
   ON comments.author = users.username
   JOIN parks
   ON parks.id = comments.park_id
-  WHERE users.id = $1`, id);
+  WHERE users.id = $1
+  GROUP BY users.first_name, users.username, parks.name, comments.id
+  ORDER BY comments.date_created DESC`, id);
 }
 
 async function login(username, password) {

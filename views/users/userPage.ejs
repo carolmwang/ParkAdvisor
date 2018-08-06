@@ -1,17 +1,22 @@
+<%- include('../partials/header') %>
+<h2>Welcome to your page, <%= user[0].first_name %>!</h2>
+<h4>Your comments:</h4>
+<p>Check the comment you want to edit, make your changes, and submit them!</p>
 <div>
     <% user.forEach((comment) => { %>
       <div>
-          <span><%= comment.content %></span>
+          <h4><%= comment.park %></h4>
+          <p><%= comment.content %></p>
+          <br />
           <span><%= comment.date_created %></span>
           <form action='?_method=PUT' method="POST">
-          <label for="id" name="<%= comment.id %>">
-            <label for="content" name="<%= comment.id %>">
-                <textarea placeholder="Edit comment here" name="content" id="content" rows="6"></textarea>
+            <input type="checkbox" name="comment_id" value="<%= comment.comment_id %>">
+            <label for="content">
+                <textarea placeholder="Edit comment here" name="content" id="content" rows="8" cols="100"></textarea>
                 <div>
                   <input type="submit" value="submit">
                 </div>
             </label>
-          </label>
           </form>
         </p>
       </div>

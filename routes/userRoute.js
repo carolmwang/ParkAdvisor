@@ -9,6 +9,8 @@ userRouter.use(authControl.usersOnly);
 
 userRouter.get('/', userControl.userInfo, userView.showUserInfo);
 
-userRouter.put('/', commentControl.update, userView.handleUpdate);
+userRouter.route('/')
+  .get(userControl.userInfo, userView.showUserInfo)
+  .put(userControl.userInfo, commentControl.update, userView.handleUpdate);
 
 module.exports = userRouter;
