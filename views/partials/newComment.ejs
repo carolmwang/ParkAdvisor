@@ -1,10 +1,10 @@
 <form action="/parks/<%= park.id %>" method="post">
 
-  <label for="content">
+  <label for="content" name="<%= park.id %>">
     <textarea placeholder="Share your experiences here!" name="content" id="content" rows="6"></textarea>
     <div>
         <input type="submit" value="submit">
     </div>
   </label>
   
-</form>
+</form> 

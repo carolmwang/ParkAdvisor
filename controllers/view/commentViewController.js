@@ -1,7 +1,7 @@
 module.exports = {
 
   showComments(req, res) {
-    res.render('comments', {
+    res.render('./onePark', {
       comment: res.locals.comments,
     });
   },

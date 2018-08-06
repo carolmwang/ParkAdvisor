@@ -10,10 +10,9 @@ const commentDB = require('../models/commentDB');
 
 module.exports = {
   createNewComment(req, res, next) {
-    // COME BACK TO THIS AND FIX THE REQ
-    commentDB.save({ ...req.body, author: req.name.id })
+    commentDB.save({ ...req.body, author: req.user.username, park_id: req.params.id })
       .then((comment) => {
-        res.redirect(`/${req.park.id}`);
+        res.redirect(`/parks/${req.params.id}`);
       })
       .catch(err => next(err));
   },
