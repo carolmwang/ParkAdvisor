@@ -1,0 +1,20 @@
+<div>
+    <% user.forEach((comment) => { %>
+      <div>
+          <span><%= comment.content %></span>
+          <span><%= comment.date_created %></span>
+          <form action='?_method=PUT' method="POST">
+          <label for="id" name="<%= comment.id %>">
+            <label for="content" name="<%= comment.id %>">
+                <textarea placeholder="Edit comment here" name="content" id="content" rows="6"></textarea>
+                <div>
+                  <input type="submit" value="submit">
+                </div>
+            </label>
+          </label>
+          </form>
+        </p>
+      </div>
+    <% }) %>
+    
+    </div>

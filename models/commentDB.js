@@ -34,10 +34,7 @@ module.exports = {
   update(comment) {
     return db.one(`
       UPDATE comments
-      SET (
-        author = $/author/, 
-        content = $/content/, 
-        park_id = $/park_id/)
+      SET content = $/content/
       WHERE id = $/id/
       RETURNING *`, comment);
   },

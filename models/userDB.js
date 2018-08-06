@@ -38,6 +38,18 @@ function findById(id) {
       FROM users
       WHERE id = $1`, id);
 }
+
+function findAllComments(id) {
+  return db.many(`
+  SELECT users.username, comments.id, comments.content, comments.date_created, parks.name
+  FROM users
+  JOIN comments
+  ON comments.author = users.username
+  JOIN parks
+  ON parks.id = comments.park_id
+  WHERE users.id = $1`, id);
+}
+
 async function login(username, password) {
   try {
     const user = await findByUsername(username);
@@ -57,4 +69,5 @@ module.exports = {
   findByUsername,
   findById,
   login,
+  findAllComments,
 };

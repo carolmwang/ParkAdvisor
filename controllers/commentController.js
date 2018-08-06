@@ -38,14 +38,12 @@ module.exports = {
       .catch(err => next(err));
   },
   update(req, res, next) {
-    const { author, content, park_id } = req.body;
+    const { id, content } = req.body;
     const modifiedComment = {
-      id: req.pararms.id,
-      author,
+      id,
       content,
-      park_id,
     };
-
+    
     commentDB.update(modifiedComment)
       .then((comment) => {
         res.locals.comment = comment;

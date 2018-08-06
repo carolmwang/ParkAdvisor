@@ -44,14 +44,13 @@ function usersOnly(req, res, next) {
 }
 
 function userInfo(req, res, next) {
-  userDB.findByUsername(username)
-    .then((name) => {
-      res.locals.userData = name;
+  userDB.findAllComments(req.user.id)
+    .then((data) => {
+      res.locals.userData = data;
       next();
     })
     .catch(err => next(err));
 }
-
 
 module.exports = {
   renderLogin,

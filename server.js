@@ -11,6 +11,7 @@ const api            = require('./api/api');
 
 const stateRouter = require('./routes/stateRoute');
 const parkRouter = require('./routes/parkRoute');
+const userRouter = require('./routes/userRoute');
 const authRouter = require('./routes/auth');
 const authController = require('./controllers/userController');
 
@@ -45,6 +46,7 @@ app.use(passport.session());
 // set up routers
 app.use('/states', stateRouter);
 app.use('/parks', parkRouter);
+app.use('/user', userRouter);
 app.use('/auth', authRouter);
 
 app.get('/', (req, res) => {
