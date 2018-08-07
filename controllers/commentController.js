@@ -1,14 +1,7 @@
 const commentDB = require('../models/commentDB');
-// create new comment middleware function
-// get all middleware function
-// get one middleware function
-// create middlewere function
-// update middleware function
-// delete middleware function
-// showNewForm function to show empty comment template
-// showEditForm function to show edit comment template
 
 module.exports = {
+  // middleware: create new comment
   createNewComment(req, res, next) {
     commentDB.save({ ...req.body, author: req.user.username, park_id: req.params.id })
       .then((comment) => {
@@ -16,6 +9,7 @@ module.exports = {
       })
       .catch(err => next(err));
   },
+  // middleware: show all comments
   index(req, res, next) {
     commentDB.findAll()
       .then((comments) => {
@@ -23,6 +17,7 @@ module.exports = {
         next();
       }).catch(err => next(err));
   },
+  // middleware: find all comments by park
   getByPark(req, res, next) {
     commentDB.findCommentsByPark(req.params.id)
       .then((comments) => {
@@ -30,6 +25,7 @@ module.exports = {
         next();
       }).catch(err => next(err));
   },
+  // middleware: find comments by id
   getOne(req, res, next) {
     commentDB.findById(req.params.id)
       .then((comment) => {
@@ -37,6 +33,7 @@ module.exports = {
         next();
       }).catch(err => next(err));
   },
+  // middleware: create new comment
   create(req, res, next) {
     commentDB.save(req.body)
       .then((newComment) => {
@@ -44,6 +41,7 @@ module.exports = {
       })
       .catch(err => next(err));
   },
+  // middleware: update comment
   update(req, res, next) {
     const { comment_id, content } = req.body;
     const modifiedComment = {
@@ -57,6 +55,7 @@ module.exports = {
       })
       .catch(err => next(err));
   },
+  // middleware: delete comment
   destroy(req, res, next) {
     commentDB.destroy(req.params.id)
       .then(() => {

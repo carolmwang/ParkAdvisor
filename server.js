@@ -1,4 +1,5 @@
 require('dotenv').config();
+// require node modules
 const express        = require('express');
 const logger         = require('morgan');
 const path           = require('path');
@@ -8,6 +9,7 @@ const passport       = require('passport');
 const session        = require('express-session');
 const flash          = require('connect-flash');
 
+// require routes
 const stateRouter = require('./routes/stateRoute');
 const parkRouter = require('./routes/parkRoute');
 const userRouter = require('./routes/userRoute');
@@ -50,17 +52,6 @@ app.use('/user', userRouter);
 app.use('/auth', authRouter);
 app.use('/comments', commentRouter);
 
-app.get('/', (req, res) => {
-  console.log(req.user);
-  res.send(`hello ${req.user ? req.user.username : 'world'}`);
-});
-
 app.listen(PORT, () => {
   console.log(`The server is up and running on port: ${PORT}`);
 });
-
-app.get('/', (req, res) => {
-  res.send('Testing server');
-});
-
-// api.getAllParks().then(parks => console.log(parks));

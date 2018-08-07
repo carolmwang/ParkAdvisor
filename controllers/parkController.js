@@ -1,6 +1,7 @@
 const parkDB = require('../models/parkDB');
 
 module.exports = {
+  // find all parks
   index(req, res, next) {
     parkDB.findAll()
       .then((parks) => {
@@ -9,6 +10,7 @@ module.exports = {
       })
       .catch(err => next(err));
   },
+  // find all parks in a specific state
   getInState(req, res, next) {
     parkDB.findByState(req.query.code)
       .then((parks) => {
@@ -18,6 +20,7 @@ module.exports = {
       })
       .catch(err => next(err));
   },
+  // get one park by id
   getOne(req, res, next) {
     parkDB.findById(req.params.id)
       .then((park) => {

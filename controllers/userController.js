@@ -1,3 +1,4 @@
+// TAKEN FROM JOHN MASTER AUTH LECTURE
 // require passport
 const passport = require('passport');
 
@@ -43,6 +44,7 @@ function usersOnly(req, res, next) {
   }
 }
 
+// middleware function to get all comments by one user
 function userInfo(req, res, next) {
   userDB.findAllComments(req.user.id)
     .then((data) => {

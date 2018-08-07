@@ -1,17 +1,14 @@
 const db = require('../config/connection');
 
-// functions:
-// find All
-// find by id
-// save
-// destroy
 module.exports = {
+  // find all comments
   findAll() {
     return db.many(`
       SELECT *
       FROM comments
       `);
   },
+  // find comments by park, joining all 3 tables
   findCommentsByPark(id) {
     return db.many(`
     SELECT c.id, c.author, c.content, c.date_created, 
@@ -24,12 +21,14 @@ module.exports = {
     WHERE park_id = $1`,
     id);
   },
+  // find comment by id
   findById(id) {
     return db.one(`
       SELECT *
       FROM comments
       WHERE id = $1`, id);
   },
+  // create new comment
   save(comment) {
     return db.one(`
       INSERT INTO comments
@@ -38,11 +37,13 @@ module.exports = {
       ($/author/, $/content/, $/park_id/)
       RETURNING *`, comment);
   },
+  // delete comment by id
   destroy(id) {
     return db.none(`
       DELETE FROM comments
       WHERE id = $1`, id);
   },
+  // update comment
   update(comment) {
     return db.one(`
       UPDATE comments

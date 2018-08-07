@@ -1,3 +1,5 @@
+// seed data from the National Park API
+// seed static data: user, states, comments
 const park = require('../models/parkDB');
 const user = require('../models/userDB');
 const comment = require('../models/commentDB');
@@ -13,29 +15,6 @@ const userSeedData = [
     password: 'pass',
   },
 ];
-
-// const parkSeedData = [
-//   {
-//     name: 'Acadia National Park',
-//     state_id: '1',
-//   },
-//   {
-//     name: 'Arches National Park',
-//     state_id: '1',
-//   },
-//   {
-//     name: 'Badlands National Park',
-//     state_id: '1',
-//   },
-//   {
-//     name: 'Big Bend National Park',
-//     state_id: '1',
-//   },
-//   {
-//     name: 'Biscayne National Park',
-//     state_id: '1',
-//   },
-// ];
 
 const commentSeedData = [
   {
@@ -248,20 +227,16 @@ const stateSeedData = [
   },
 ];
 
+// async function to seed data into the DB (referenced John Master's lecture)
 async function seed() {
   const stateQueries = await Promise.all((stateSeedData.map(state.save)));
   const states = await Promise.all(stateQueries);
-  console.log(states);
-  // const parks = await Promise.all((parkSeedData.map(park.save)));
-  // console.log(parks);
   const users = await Promise.all((userSeedData.map(
     ({
       first_name, last_name, email, username, password,
     }) => user.register(first_name, last_name, email, username, password),
   )));
-  console.log(users);
   const comments = await Promise.all((commentSeedData.map(comment.save)));
-  console.log(comments);
 }
 
 

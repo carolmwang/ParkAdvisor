@@ -1,6 +1,7 @@
 const stateDB = require('../models/stateDB');
 
 module.exports = {
+  // find all states
   index(req, res, next) {
     stateDB.findAll()
       .then((states) => {
@@ -9,12 +10,4 @@ module.exports = {
       })
       .catch(err => next(err));
   },
-  // getOne(req, res, next) {
-  //   stateDB.findById(req.params.id)
-  //     .then((state) => {
-  //       res.locals.state = state;
-  //       next();
-  //     })
-  //     .catch(err => next(err));
-  // },
 };

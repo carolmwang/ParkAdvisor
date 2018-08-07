@@ -7,12 +7,8 @@ const stateRouter = express.Router();
 
 stateRouter.use(authController.usersOnly);
 
-// FOR TESTING PURPOSES
-// const showJSON = (req, res) => {
-//   res.json(res.locals.states);
-// };
-
-stateRouter.get('/', stateController.index, stateView.showAllStates);
+// middleware function to show all states(drop down)
+stateRouter.get('/', stateController.index, stateView.showAllStates, stateView.show404);
 
 
 module.exports = stateRouter;
