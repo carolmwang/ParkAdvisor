@@ -31,7 +31,7 @@ const stateSeedData = [
   },
   {
     name: 'Alaska',
-    code:  'AK',
+    code: 'AK',
   },
   {
     name: 'Arizona',

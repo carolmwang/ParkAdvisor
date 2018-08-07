@@ -51,3 +51,7 @@ passport-local
 pg-promise
 eslint
 nodemon
+
+## video walk through
+
+
