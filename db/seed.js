@@ -239,5 +239,4 @@ async function seed() {
   const comments = await Promise.all((commentSeedData.map(comment.save)));
 }
 
-
 seed();

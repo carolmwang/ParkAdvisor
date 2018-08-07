@@ -15,7 +15,6 @@ module.exports = {
     parkDB.findByState(req.query.code)
       .then((parks) => {
         res.locals.parks = parks;
-        console.log(parks);
         next();
       })
       .catch(err => next(err));
@@ -25,7 +24,6 @@ module.exports = {
     parkDB.findById(req.params.id)
       .then((park) => {
         res.locals.park = park;
-        console.log(park);
         next();
       })
       .catch(err => next(err));

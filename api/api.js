@@ -5,6 +5,7 @@ const fetch = require('node-fetch');
 
 const { insert } = require('../models/parkDB');
 
+// referred to Fetch sql lesson- Drake
 function getApiData() {
   return fetch(`https://developer.nps.gov/api/v1/parks?limit=10000&parkCode=&api_key=${parkApi}`)
     .then((resp) => {
@@ -17,17 +18,8 @@ function getApiData() {
     .catch(err => console.log(err));
 }
 
-
-// function getNationalParks() {
-//   return getApiData()
-//     .then((data) => {
-//       const npSeed = {
-//         name: data.fullname,
-//       };
-//     });
-// }
-
-
+// gets all the national park information needed from
+// the api and will be seeded into the database
 function getNationalParks() {
   return getApiData()
     .then((data) => {
@@ -47,8 +39,5 @@ function getNationalParks() {
       return Promise.all(pushData);
     });
 }
-console.log(getNationalParks());
 
 module.exports = getNationalParks;
-
-

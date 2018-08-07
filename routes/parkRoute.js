@@ -6,6 +6,7 @@ const commentView = require('../controllers/view/commentViewController');
 const userControl = require('../controllers/userController');
 const userView = require('../controllers/view/userViewController');
 const authControl = require('../controllers/userController');
+
 const parkRouter = express.Router();
 
 parkRouter.use(authControl.usersOnly);
@@ -20,7 +21,7 @@ parkRouter.post('/:id/new', (req, res) => {
   res.render('newComment');
 });
 
-//routes for one park
+// routes for one park
 parkRouter.route('/:id')
   .get(parkControl.getOne, parkView.showOne, commentControl.getByPark,
     commentView.showComments, userControl.userInfo, parkView.showOne, parkView.show404)
