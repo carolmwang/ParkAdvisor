@@ -54,4 +54,4 @@ nodemon
 
 ## video walk through
 
-
+https://youtu.be/Bnxc6uBSBpk
