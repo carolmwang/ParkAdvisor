@@ -2,7 +2,7 @@
 <h2>Welcome to your page, <%= user[0].first_name %>!</h2>
 <h4>Your comments:</h4>
 <p>Check the comment you want to edit, make your changes, and submit them!</p>
-<div>
+<div class="border">
     <% user.forEach((comment) => { %>
       <div>
           <h4><%= comment.park %></h4>

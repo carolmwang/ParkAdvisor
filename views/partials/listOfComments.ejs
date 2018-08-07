@@ -1,12 +1,14 @@
 <div>
 <% comments.forEach((comment) => { %>
-  <div>
+<div class="columns">
+  <div class="column is-four-fifths">
     <p><%= comment.author %>
       <br>
-      <span><%= comment.content %></span>
-      <span><%= comment.date_created %></span>
+      <p><%= comment.content %></p>
+      <p><%= comment.date_created %></p>
     </p>
   </div>
+</div>
 <% }) %>
 
 </div>
