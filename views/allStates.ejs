@@ -1,17 +1,26 @@
 <%- include('./partials/header') %>
 
-<form action="/parks" method="GET">
-  <label for="name">
-  Choose a state!
-  <select type="custom-selects" style="width:200px" name="code">
-    <% states.forEach((state) => { %>
-      <label for="<%= state.code %>">
-      <option id="<%= state.code %>" value="<%= state.code %>" name="<%= state.code %>"><%= state.name %></option>
-      </label>
-    <% }) %>
-  </select>
-  <input type="submit" value="submit">
-  </label>
-</form>
-
-<%- include('./partials/foot') %>
+<div class=" section columns is-centered">
+  <form action="/parks" method="GET">
+    <label for="name">
+      Choose a state!
+      <div class="field">
+        <div class="control">
+          <div class="select is-primary is-large">
+            <select type="custom-selects" style="width:200px" name="code">
+              <% states.forEach((state) => { %>
+                <label for="<%= state.code %>">
+                  <option id="<%= state.code %>" value="<%= state.code %>" name="<%= state.code %>">
+                    <%= state.name %>
+                  </option>
+                </label>
+                <% }) %>
+            </select>
+          </div>
+        </div>
+      </div>
+      <input type="submit" value="submit" class="button is-primary">
+    </label>
+  </form>
+</div>
+  <%- include('./partials/foot') %>

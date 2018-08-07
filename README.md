@@ -30,6 +30,7 @@ Feel free to check out my code
 ## References
 - Quotes-ta-gram (AUTH-Login)
 - Fetch-SQL (API)
+- https://bulma.io/documentation for styling
 
 ***
 
