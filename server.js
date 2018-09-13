@@ -1,4 +1,4 @@
-require('dotenv').config();
+
 // require node modules
 const express = require('express');
 const logger = require('morgan');
