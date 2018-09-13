@@ -45,7 +45,7 @@ express
 express-session
 method-override
 morgan
-node-fetch
+node-fetch  
 passport
 passport-local
 pg-promise

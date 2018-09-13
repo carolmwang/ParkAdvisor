@@ -1,10 +1,49 @@
+require('dotenv').config();
 // seed data from the National Park API
 // seed static data: user, states, comments
+const fetch = require('node-fetch');
 const park = require('../models/parkDB');
 const user = require('../models/userDB');
 const comment = require('../models/commentDB');
 const state = require('../models/stateDB');
-const api = require('../api/api');
+const parkApi = process.env.PARK_API_KEY;
+
+const { insert } = require('../models/parkDB');
+
+// referred to Fetch sql lesson- Drake
+function getApiData() {
+  return fetch(`https://developer.nps.gov/api/v1/parks?limit=100000&parkCode=&api_key=${parkApi}`)
+    .then((resp) => {
+      if (!resp.ok) {
+        throw Error(resp.statusText);
+      }
+      return resp.json();
+    })
+    .then(data => data.data)
+    .catch(err => console.log(err));
+}
+
+// gets all the national park information needed from
+// the api and will be seeded into the database
+function getNationalParks() {
+  return getApiData()
+    .then((data) => {
+      const pushData = data.map((names) => {
+        if (names.designation === 'National Park') {
+          const parkData = {
+            name: names.fullName,
+            state: names.states,
+            description: names.description,
+            weather: names.weatherInfo,
+            url: names.url,
+            directions: names.directionsUrl,
+          };
+          return insert(parkData);
+        }
+      });
+      return Promise.all(pushData);
+    });
+}
 
 const userSeedData = [
   {
@@ -20,15 +59,11 @@ const commentSeedData = [
   {
     author: 'cwang',
     content: 'This is the best park!',
-    park_id: '1',
+    park_id: 1,
   },
 ];
 
 const stateSeedData = [
-  {
-    name: 'Alabama',
-    code: 'AL',
-  },
   {
     name: 'Alaska',
     code: 'AK',
@@ -50,20 +85,8 @@ const stateSeedData = [
     code: 'CO',
   },
   {
-    name: 'Connecticut',
-    code: 'CT',
-  },
-  {
-    name: 'Delaware',
-    code: 'DE',
-  },
-  {
     name: 'Florida',
     code: 'FL',
-  },
-  {
-    name: 'Georgia',
-    code: 'GA',
   },
   {
     name: 'Hawaii',
@@ -74,40 +97,12 @@ const stateSeedData = [
     code: 'ID',
   },
   {
-    name: 'Illinois',
-    code: 'IL',
-  },
-  {
-    name: 'Indiana',
-    code: 'IN',
-  },
-  {
-    name: 'Iowa',
-    code: 'IA',
-  },
-  {
-    name: 'Kansas',
-    code: 'KA',
-  },
-  {
     name: 'Kentucky',
     code: 'KY',
   },
   {
-    name: 'Louisiana',
-    code: 'LA',
-  },
-  {
     name: 'Maine',
     code: 'ME',
-  },
-  {
-    name: 'Maryland',
-    code: 'MD',
-  },
-  {
-    name: 'Massachusetts',
-    code: 'MA',
   },
   {
     name: 'Michigan',
@@ -118,40 +113,16 @@ const stateSeedData = [
     code: 'MN',
   },
   {
-    name: 'Mississippi',
-    code: 'MS',
-  },
-  {
-    name: 'Missouri',
-    code: 'MO',
-  },
-  {
     name: 'Montana',
     code: 'MT',
-  },
-  {
-    name: 'Nebraska',
-    code: 'NE',
   },
   {
     name: 'Nevada',
     code: 'NV',
   },
   {
-    name: 'New Hampshire',
-    code: 'NH',
-  },
-  {
-    name: 'New Jersey',
-    code: 'NJ',
-  },
-  {
     name: 'New Mexico',
     code: 'NM',
-  },
-  {
-    name: 'New York',
-    code: 'NY',
   },
   {
     name: 'North Carolina',
@@ -166,20 +137,8 @@ const stateSeedData = [
     code: 'OH',
   },
   {
-    name: 'Oklahoma',
-    code: 'OK',
-  },
-  {
     name: 'Oregon',
     code: 'OR',
-  },
-  {
-    name: 'Pennsylvania',
-    code: 'PA',
-  },
-  {
-    name: 'Rhode Island',
-    code: 'RI',
   },
   {
     name: 'South Carolina',
@@ -202,24 +161,12 @@ const stateSeedData = [
     code: 'UT',
   },
   {
-    name: 'Vermont',
-    code: 'VT',
-  },
-  {
     name: 'Virginia',
     code: 'VA',
   },
   {
     name: 'Washington',
     code: 'WA',
-  },
-  {
-    name: 'West Virginia',
-    code: 'WV',
-  },
-  {
-    name: 'Wisconsin',
-    code: 'WI',
   },
   {
     name: 'Wyoming',
@@ -229,14 +176,17 @@ const stateSeedData = [
 
 // async function to seed data into the DB (referenced John Master's lecture)
 async function seed() {
-  const stateQueries = await Promise.all((stateSeedData.map(state.save)));
-  const states = await Promise.all(stateQueries);
   const users = await Promise.all((userSeedData.map(
     ({
       first_name, last_name, email, username, password,
     }) => user.register(first_name, last_name, email, username, password),
   )));
+  const stateQueries = await Promise.all((stateSeedData.map(state.save)));
+  const states = await Promise.all(stateQueries);
   const comments = await Promise.all((commentSeedData.map(comment.save)));
+  console.log(comments);
 }
-
-seed();
+getNationalParks()
+  .then(() => {
+    seed();
+  });

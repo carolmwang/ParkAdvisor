@@ -1,13 +1,23 @@
 <%- include('./partials/header') %>
 
-<h3>National Parks in <%= parks[0].state %>:</h3>
-<% parks.forEach((parks) => { %>
-<div>
-  <a href="/parks/<%= parks.id %>">
-    <p><%= parks.name %></p>
-  </a>
-  </div>
-</div>
-<% }); %>
+  <br />
+  <div class="columns is-multiline is-centered">
+    <div class="column is-half">
+      <h2 class="is-size-2">National Parks in
+        <%= parks[0].state %>:</h2>
 
-<%- include('./partials/foot') %>
+      <% parks.forEach((parks) => { %>
+        <div>
+          <a href="/parks/<%= parks.id %>" class="is-primary">
+            <p>
+              <%= parks.name %>
+            </p>
+          </a>
+        </div>
+
+        <% }); %>
+    </div>
+  </div>
+  </div>
+
+  <%- include('./partials/foot') %>

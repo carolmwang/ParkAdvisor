@@ -1,18 +1,22 @@
 <%- include('../partials/header') %>
-<h2>Welcome to your page, <%= user[0].first_name %>!</h2>
-<h4>Your comments:</h4>
-<p>Check the comment you want to edit, make your changes, and submit them!</p>
-<div class="border">
+<div class="columns is-centered">
+  <div class="column is-half">
+<h2 class="is-size-3">Welcome to your page, <%= user[0].first_name %>!</h2>
+<br />
+<h4 class="is-size-4">Your comments:</h4>
+<p><em>Check the comment you want to edit, make your changes, and submit them!</em></p>
+<br />  
     <% user.forEach((comment) => { %>
-      <div>
-          <h4><%= comment.park %></h4>
+      <div class="box">
+          <h4 class="is-size-6"><strong><%= comment.park %></strong></h4>
+          <br />
           <p><%= comment.content %></p>
           <br />
           <span><%= comment.date_created %></span>
           <form action='?_method=PUT' method="POST">
             <input type="checkbox" name="comment_id" value="<%= comment.comment_id %>">
             <label for="content">
-                <textarea placeholder="Edit comment here" name="content" id="content" rows="8" cols="100"></textarea>
+                <textarea placeholder="Edit comment here" name="content" id="content" rows="8" class="textarea"></textarea>
                 <div>
                   <input type="submit" value="submit">
                 </div>
@@ -25,4 +29,5 @@
       </div>
     <% }) %>
     
-    </div>
+  </div>
+  </div>

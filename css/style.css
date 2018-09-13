@@ -3,3 +3,7 @@ body {
   text-align: center;
 }
 
+.bg-img {
+  background: url('../img/daylight-environment-forest-459225.jpg') center center;
+  background-size: cover;
+}

@@ -1,18 +1,26 @@
-<form action="/auth/login" method="post">
-  <h2>Login</h2>
-  <% if (errors.length > 0) { %>
-    <ul>
-      <% errors.forEach((err) => { %>
-        <li><%= err %></li>
-      <% }) %>
-    </ul>
-  <% } %>
-  <label for="username">
-    <input type="text" name="username">
-  </label>
-  <label for="password">
-    <input type="password" name="password">
-  </label>
-  <button type="submit">Login</button>
-  <a href="/auth/register"><button>Register here!</button></a>
-</form>
+<div className="columns is-centered">
+  <div className="column is-one-fifth is-centered">
+    <form action="/auth/login" method="post">
+      <h2 "is-size-4">Login</h2>
+      <% if (errors.length > 0) { %>
+        <ul>
+          <% errors.forEach((err) => { %>
+            <li>
+              <%= err %>
+            </li>
+            <% }) %>
+        </ul>
+        <% } %>
+          <label for="username">
+            <input type="text" name="username" placeholder="username" className="input is-primary is-small">
+          </label>
+          <label for="password">
+            <input type="password" name="password" placeholder="password" className="input is-warning is-small">
+          </label>
+          <button type="submit" className="button is-primary">Login</button>
+          <a href="/auth/register">
+            <button className="button is-primary">Register here!</button>
+          </a>
+    </form>
+  </div>
+</div>

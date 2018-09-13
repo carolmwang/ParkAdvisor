@@ -1,13 +1,13 @@
 require('dotenv').config();
 // require node modules
-const express        = require('express');
-const logger         = require('morgan');
-const path           = require('path');
-const bodyParser     = require('body-parser');
+const express = require('express');
+const logger = require('morgan');
+const path = require('path');
+const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
-const passport       = require('passport');
-const session        = require('express-session');
-const flash          = require('connect-flash');
+const passport = require('passport');
+const session = require('express-session');
+const flash = require('connect-flash');
 
 // require routes
 const stateRouter = require('./routes/stateRoute');
@@ -15,7 +15,7 @@ const parkRouter = require('./routes/parkRoute');
 const userRouter = require('./routes/userRoute');
 const commentRouter = require('./routes/commentRoute');
 const authRouter = require('./routes/auth');
-const authController = require('./controllers/userController');
+// const authController = require('./controllers/userController');
 
 const PORT = process.env.PORT || 3000;
 

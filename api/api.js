@@ -7,7 +7,7 @@ const { insert } = require('../models/parkDB');
 
 // referred to Fetch sql lesson- Drake
 function getApiData() {
-  return fetch(`https://developer.nps.gov/api/v1/parks?limit=10000&parkCode=&api_key=${parkApi}`)
+  return fetch(`https://developer.nps.gov/api/v1/parks?limit=100000&parkCode=&api_key=${parkApi}`)
     .then((resp) => {
       if (!resp.ok) {
         throw Error(resp.statusText);
@@ -40,4 +40,5 @@ function getNationalParks() {
     });
 }
 
+getNationalParks();
 module.exports = getNationalParks;

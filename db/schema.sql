@@ -9,7 +9,7 @@ CREATE TABLE users (
     id SERIAL PRIMARY KEY,
     first_name VARCHAR(255),
     last_name VARCHAR(255),
-    email TEXT NOT NULL UNIQUE,
+    email VARCHAR(255) NOT NULL UNIQUE,
     username VARCHAR(255) NOT NULL UNIQUE,
     password_digest VARCHAR(255) NOT NULL,
     date_created TIMESTAMP NOT NULL DEFAULT NOW()
@@ -25,8 +25,8 @@ CREATE TABLE parks (
     id SERIAL PRIMARY KEY,
     name VARCHAR(255),
     state VARCHAR(10),
-    description VARCHAR(500),
-    weather VARCHAR(500),
+    description VARCHAR(1000),
+    weather VARCHAR(1000),
     url VARCHAR(255),
     directions VARCHAR(255)
 );
