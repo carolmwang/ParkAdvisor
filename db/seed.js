@@ -184,7 +184,6 @@ async function seed() {
   const stateQueries = await Promise.all((stateSeedData.map(state.save)));
   const states = await Promise.all(stateQueries);
   const comments = await Promise.all((commentSeedData.map(comment.save)));
-  console.log(comments);
 }
 getNationalParks()
   .then(() => {
