@@ -53,5 +53,5 @@ app.use('/auth', authRouter);
 app.use('/comments', commentRouter);
 
 app.listen(PORT, () => {
-  console.log(`The server is up and running on port: ${PORT}`);
+  console.log(`The server is up and running on port: ${PORT}, in ${app.get('env')} mode.`);
 });

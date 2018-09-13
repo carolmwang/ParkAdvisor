@@ -1,4 +1,3 @@
-require('dotenv').config();
 // seed data from the National Park API
 // seed static data: user, states, comments
 const fetch = require('node-fetch');
