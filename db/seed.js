@@ -6,6 +6,7 @@ const park = require('../models/parkDB');
 const user = require('../models/userDB');
 const comment = require('../models/commentDB');
 const state = require('../models/stateDB');
+
 const parkApi = process.env.PARK_API_KEY;
 
 const { insert } = require('../models/parkDB');
