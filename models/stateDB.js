@@ -6,6 +6,7 @@ module.exports = {
     return db.many(`
     SELECT *
     FROM states
+    ORDER BY name ASC
     `);
   },
   // find state by id
