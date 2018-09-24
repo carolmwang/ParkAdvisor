@@ -29,6 +29,7 @@ function getApiData() {
 function getNationalParks() {
   return getApiData()
     .then((data) => {
+
       const pushData = data.map((names) => {
         if (names.designation === 'National Park') {
           const parkData = {
@@ -184,8 +185,10 @@ async function seed() {
   )));
   const stateQueries = await Promise.all((stateSeedData.map(state.save)));
   const states = await Promise.all(stateQueries);
-  const comments = await Promise.all((commentSeedData.map(comment.save)));
+  // const comments = await Promise.all((commentSeedData.map(comment.save)));
+  // console.log(comments);
 }
+
 getNationalParks()
   .then(() => {
     seed();

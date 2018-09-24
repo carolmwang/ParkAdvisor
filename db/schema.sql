@@ -9,7 +9,7 @@ CREATE TABLE users (
     id SERIAL PRIMARY KEY,
     first_name VARCHAR(255),
     last_name VARCHAR(255),
-    email VARCHAR(255) NOT NULL UNIQUE,
+    email VARCHAR(255) UNIQUE,
     username VARCHAR(255) NOT NULL UNIQUE,
     password_digest VARCHAR(255) NOT NULL,
     date_created TIMESTAMP NOT NULL DEFAULT NOW()

@@ -1,31 +1,32 @@
-<form action="/auth/register" method="post">
-  <h2>Register</h2>
-  <% if (errors.length > 0) { %>
-    <ul>
-      <% errors.forEach((err) => { %>
-        <li><%= err %></li>
-      <% }) %>
-    </ul>
-  <% } %>
-  <label for="first_name">
-    First Name
-    <input type="text" name="first_name">
-  </label>
-  <label for="last_name">
-    Last Name
-    <input type="text" name="last_name">
-  </label>
-  <label for="email">
-    Email
-    <input type="text" name="email">
-  </label>
-  <label for="username">
-    Username
-    <input type="text" name="username">
-  </label>
-  <label for="password">
-    Password
-    <input type="password" name="password">
-  </label>
-  <button type="submit">Register</button>
-</form>
+<%- include('../partials/header') %>
+
+<div class="columns is-centered">
+  <div class="column is-half">
+    <form action="/auth/register" method="post">
+      <h2 class="size-4">Register</h2>
+      <% if (errors.length > 0) { %>
+        <ul>
+          <% errors.forEach((err) => { %>
+            <li>
+              <%= err %>
+            </li>
+            <% }) %>
+        </ul>
+        <% } %>
+          <div class="field">
+            <label for="username" class="label">
+              Username
+              <input type="text" name="username" class="input is-primary is-small">
+            </label>
+          </div>
+          <div class="field">
+            <label for="password" class="label">
+              Password
+              <input type="password" name="password" class="input is-primary is-small">
+            </label>
+          </div>
+          <button type="submit" class="button is-small is-primary">Register</button>
+    </form>
+  </div>
+</div>
+<%- include('../partials/foot') %>

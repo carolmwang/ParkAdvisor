@@ -19,10 +19,10 @@ function renderRegister(req, res) {
 }
 
 function handleRegister(req, res, next) {
-  const { first_name, last_name, email, username, password } = req.body;
-  userDB.register(first_name, last_name, email, username, password)
+  const { username, password } = req.body;
+  userDB.register(username, password)
     .then((newUser) => {
-      req.login(newUser, err => (err ? next(err) : res.redirect('/')));
+      req.login(newUser, err => (err ? next(err) : res.redirect('/auth/login')));
     })
     .catch((err) => {
       req.flash('error', 'username unavailable');
@@ -32,7 +32,7 @@ function handleRegister(req, res, next) {
 
 function handleLogout(req, res) {
   req.logout();
-  res.redirect('/');
+  res.redirect('/auth/login');
 }
 
 function usersOnly(req, res, next) {

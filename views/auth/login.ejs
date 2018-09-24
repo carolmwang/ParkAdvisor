@@ -1,7 +1,17 @@
-<div className="columns is-centered">
-  <div className="column is-one-fifth is-centered">
+<%- include('../partials/header') %>
+
+
+<div class="columns is-centered">
+  <div class="column is-one-fifth">
+    <br />
+      <a href="/auth/register">
+        <button class="button is-primary is small">Register here!</button>
+      </a>
+      <br />
+      <br />
     <form action="/auth/login" method="post">
-      <h2 "is-size-4">Login</h2>
+      <h2 "size-7"><strong>LOGIN</strong></h2>
+      <br />
       <% if (errors.length > 0) { %>
         <ul>
           <% errors.forEach((err) => { %>
@@ -11,16 +21,19 @@
             <% }) %>
         </ul>
         <% } %>
-          <label for="username">
-            <input type="text" name="username" placeholder="username" className="input is-primary is-small">
+        <div class="field">
+
+          <label class="label" for="username">Username
+            <input type="text" name="username" placeholder="username" class="input is-primary is-small">
           </label>
-          <label for="password">
-            <input type="password" name="password" placeholder="password" className="input is-warning is-small">
+        </div>
+          <label for="password" class="label">Password
+            <input type="password" name="password" placeholder="password" class="input is-primary is-small">
           </label>
-          <button type="submit" className="button is-primary">Login</button>
-          <a href="/auth/register">
-            <button className="button is-primary">Register here!</button>
-          </a>
+          <button type="submit" class="button is-primary is-small">Login</button>
     </form>
+
+
   </div>
 </div>
+<%- include('../partials/foot') %>

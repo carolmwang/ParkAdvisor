@@ -3,18 +3,15 @@ const db = require('../config/connection');
 
 // referred to john master auth lecture
 // registering new user and hashing their password on create
-function register(first_name, last_name, email, username, password) {
+function register(username, password) {
   return bcrypt.hash(password, 8)
     .then(hash => db.one(`
           INSERT INTO users
-          (first_name, last_name, email, username, password_digest)
+          (username, password_digest)
           VALUES
-          ($/first_name/, $/last_name/, $/email/, $/username/, $/password_digest/)
+          ($/username/, $/password_digest/)
           RETURNING *
           `, {
-      first_name,
-      last_name,
-      email,
       username,
       password_digest: hash,
     }));
@@ -48,6 +45,7 @@ function findAllComments(id) {
   GROUP BY users.first_name, users.username, parks.name, comments.id
   ORDER BY comments.date_created DESC`, id);
 }
+
 // login function used with passport
 async function login(username, password) {
   try {
